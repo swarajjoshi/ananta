@@ -87,7 +87,16 @@ function finish(reason){
  const n=sess.pc.finish();stopCam();
  const s=sess;
  $('#d-count').textContent=n;$('#d-target').textContent=s.target?`${n} of ${s.target}${n>=s.target?' · target reached':''}`:'';
- paintVerse(s.verse,'#d-verse','#d-ref');$('#d-hi').textContent=s.verse.hindi;
+ paintVerse(s.verse,'#d-verse','#d-ref');
+const speakers = {
+  Arjuna: 'अर्जुन कहते हैं —',
+  Krishna: 'श्रीकृष्ण कहते हैं —',
+  Sanjaya: 'संजय कहते हैं —',
+  Dhritarashtra: 'धृतराष्ट्र कहते हैं —',
+  Duryodhana: 'दुर्योधन कहते हैं —'
+};
+$('#d-speaker').textContent = speakers[s.verse.speaker] || '';
+$('#d-hi').textContent = s.verse.hindi;
  show('done');say(`Session complete. Your count is ${n}.`);$('#d-count').scrollIntoView({block:'center'})}
 $('#again').onclick=()=>{sess=null;$('#prep-msg').textContent='';show('prep')};
 $('#home').onclick=()=>{sess=null;sessionStorage.removeItem('ananta.cur');verse=pickVerse();paintVerse(verse,'#w-verse','#w-ref');show('welcome')};
