@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ANANTA · One Naam. One Moment. Infinite Peace.</title>
+<meta name="theme-color" content="#FBF7F1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Jost:wght@300;400;500&family=Noto+Serif+Devanagari:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css"></head>
+<body>
+<div id="live" class="sr" role="status" aria-live="polite"></div>
+<main>
+<section id="welcome" class="screen" aria-labelledby="brand">
+ <div id="petals" aria-hidden="true"></div>
+ <div class="stack">
+  <h1 id="brand" class="mark">ANANTA</h1>
+  <p class="tag">One Naam. One Moment. Infinite Peace.</p>
+  <blockquote class="verse" id="w-verse"></blockquote>
+  <p class="ref" id="w-ref"></p>
+  <button class="btn" id="begin">Begin Naam Jap</button>
+  <p class="fine">Camera access is needed for gesture-based counting. Nothing is recorded or uploaded.</p>
+ </div>
+</section>
+
+<section id="prep" class="screen" hidden aria-labelledby="prep-h">
+ <div class="stack card">
+  <h2 id="prep-h" class="h2">Before we begin</h2>
+  <p>Your camera helps ANANTA recognise your hand gestures and count each repetition. Video stays on your device; no microphone is used.</p>
+  <p class="fine">Keep your hand comfortably inside the frame and bring your thumb and index fingertip together naturally. Good light helps. To finish, touch your thumb to your middle fingertip (the Sacred Circle), keep the other fingers extended, and hold for two seconds. The Finish Session button always works too.</p>
+  <p id="prep-msg" class="err" role="alert"></p>
+  <button class="btn" id="enable">Enable Camera &amp; Continue</button>
+  <button class="btn ghost" id="manual-start">Continue with manual counting</button>
+  <button class="link" id="prep-back">Back</button>
+ </div>
+</section>
+
+<section id="session" class="screen" hidden aria-labelledby="s-label">
+ <div class="stack">
+  <p class="label" id="s-label">Your Naam Jap</p>
+  <div class="count" id="count" aria-live="off">0</div>
+  <p class="target" id="target-line"></p>
+  <div class="cam" id="cam"><video id="video" playsinline muted autoplay></video><span class="dot" title="Camera active"></span></div>
+  <progress id="pray" max="1" value="0" aria-label="Sacred Circle hold progress" hidden></progress>
+  <p class="status" id="status">Starting camera…</p>
+  <div class="row">
+   <button class="btn sm" id="pause">Pause</button>
+   <button class="btn sm ghost" id="undo">Undo</button>
+   <button class="btn sm ghost" id="plus" hidden>Count +1</button>
+   <button class="btn sm ghost" id="reset">Reset</button>
+  </div>
+  <div class="row"><label class="fine">Target
+   <select id="target"><option value="0">None</option><option>11</option><option>27</option><option>54</option><option>108</option><option value="c">Custom…</option></select></label>
+   <input id="custom" type="number" min="1" max="100000" inputmode="numeric" hidden aria-label="Custom target">
+  </div>
+  <button class="btn" id="finish">Finish Session</button>
+ </div>
+</section>
+
+<section id="done" class="screen" hidden aria-labelledby="d-count">
+ <div class="stack">
+  <div class="count" id="d-count">0</div>
+  <p class="diya" aria-hidden="true">🪔</p>
+  <p class="label">Your Naam Jap for this session</p>
+  <p class="target" id="d-target"></p>
+  <blockquote class="verse" id="d-verse"></blockquote>
+  <p class="ref" id="d-ref"></p>
+  <p class="hi-lead">श्रीकृष्ण कहते हैं —</p>
+  <p class="hi" id="d-hi"></p>
+  <p class="hi close">जय श्री राधे<br>जय सिया राम<br>जय श्रीमन्नारायण</p>
+  <p class="diya" aria-hidden="true">🪷</p>
+  <div class="row"><button class="btn" id="again">Begin Another Session</button>
+  <button class="btn ghost" id="home">Return to Welcome</button>
+  <button class="btn ghost" id="share">Share My Session</button></div>
+ </div>
+</section>
+</main>
+<script type="module" src="js/app.js"></script>
+</body></html>

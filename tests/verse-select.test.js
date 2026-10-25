@@ -1,0 +1,12 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {pickVerse,remember,eligible,RECENT_MAX} from '../js/verse-select.js';
+import {VERSES} from '../js/verses.js';
+const seeded=a=>()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};
+const fake=n=>Array.from({length:n},(_,i)=>({id:'v'+i}));
+const draw=(pool,n,seed=7)=>{const r=seeded(seed);let rec=[];const out=[];for(let i=0;i<n;i++){const v=pickVerse(pool,rec,r);out.push({v,window:rec.slice(-Math.min(RECENT_MAX,pool.length-1))});rec=remember(rec,v.id)}return out};
+test('50-verse pool: whole library used, no repeats inside recent window',()=>{const o=draw(fake(50),400),seen=new Set(o.map(x=>x.v.id));assert.equal(seen.size,50);for(const x of o)assert.ok(!x.window.includes(x.v.id))});
+test('3-verse pool: all three appear, never an immediate repeat',()=>{const o=draw(fake(3),90);assert.equal(new Set(o.map(x=>x.v.id)).size,3);o.forEach((x,i)=>i&&assert.notEqual(x.v.id,o[i-1].v.id))});
+test('edge cases: one verse, empty pool, rng returning 1',()=>{assert.equal(pickVerse(fake(1),['v0']).id,'v0');assert.equal(pickVerse([],[]),null);assert.ok(pickVerse(fake(5),[],()=>1))});
+test('remember dedupes and caps',()=>{assert.deepEqual(remember(['a','b'],'a'),['b','a']);assert.equal(remember(fake(30).map(x=>x.id),'z').length,RECENT_MAX)});
+test('eligible prefers verified, falls back to all',()=>{assert.deepEqual(eligible([{id:'a',status:'verified'},{id:'b'}]).map(x=>x.id),['a']);assert.equal(eligible([{id:'b'}]).length,1)});
+test('verse data is well formed',()=>{const ids=new Set();for(const v of VERSES){assert.equal(v.id,`bg-${v.chapter}-${v.verse}`);assert.ok(v.chapter>=1&&v.chapter<=18&&v.verse>=1);assert.ok(v.lines.length>=1&&v.hindi.length>10);assert.ok(['verified','provisional'].includes(v.status));if(v.status==='verified')assert.ok(v.sanskritSource&&v.hindiSource);assert.ok(!ids.has(v.id));ids.add(v.id)}});

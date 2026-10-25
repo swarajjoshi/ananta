@@ -1,0 +1,40 @@
+:root{--ivory:#FBF7F1;--blush:#F7E6E8;--pearl:#fff;--rose:#D98BA0;--rose-d:#B96279;--lav:#B9A7D0;--sage:#9DB09A;--gold:#C8A96B;--ink:#3A2733;--mute:#7A6670;
+--sans:'Jost',system-ui,sans-serif;--serif:'Cormorant Garamond',Georgia,serif;--dev:'Noto Serif Devanagari','Nirmala UI',serif}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:radial-gradient(ellipse at 50% 0,var(--blush),var(--ivory) 60%);color:var(--ink);font:400 1rem/1.6 var(--sans);min-height:100dvh;overflow-x:hidden}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+[hidden]{display:none!important}
+.screen{min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:max(1.5rem,env(safe-area-inset-top)) max(1.25rem,env(safe-area-inset-right)) max(1.5rem,env(safe-area-inset-bottom)) max(1.25rem,env(safe-area-inset-left));position:relative;animation:in .7s ease both}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.stack{position:relative;z-index:1;width:min(100%,38rem);text-align:center;display:flex;flex-direction:column;align-items:center;gap:1rem}
+.card{background:var(--pearl);border:1px solid var(--blush);border-radius:1.5rem;padding:2rem 1.5rem;box-shadow:0 8px 30px rgba(185,98,121,.08)}
+.mark{font:300 clamp(2.6rem,10vw,4.5rem)/1 var(--sans);letter-spacing:.38em;margin:0 -.38em 0 0;color:var(--ink)}
+.tag{font:italic 400 1.15rem var(--serif);color:var(--rose-d);margin:0 0 1.5rem}
+.verse{font:italic 400 clamp(1.25rem,3.6vw,1.7rem)/1.5 var(--serif);margin:0;max-width:32rem;text-wrap:balance}
+.ref{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 1.2rem}
+.h2{font:400 1.8rem var(--serif);margin:0}
+.fine{font-size:.82rem;color:var(--mute);margin:0}.err{color:#a3344f;margin:0;min-height:1.2em;font-size:.9rem}
+.btn{font:500 1rem var(--sans);min-height:48px;padding:.8rem 2rem;border-radius:999px;border:1px solid var(--rose);background:var(--rose);color:#fff;cursor:pointer;transition:transform .15s,background .2s}
+.btn:hover{background:var(--rose-d)}.btn:active{transform:scale(.97)}
+.btn.ghost{background:transparent;color:var(--rose-d)}.btn.ghost:hover{background:var(--blush)}
+.btn.sm{padding:.6rem 1.2rem;font-size:.92rem}
+.link{background:none;border:0;color:var(--mute);text-decoration:underline;cursor:pointer;min-height:44px;font:inherit}
+:focus-visible{outline:3px solid var(--lav);outline-offset:3px}
+.row{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;align-items:center}
+select,input{font:inherit;padding:.5rem;border-radius:.6rem;border:1px solid var(--blush);background:var(--pearl);color:var(--ink);min-height:44px}input{width:7rem}
+.count{font:300 clamp(5rem,26vw,9rem)/1 var(--sans);font-variant-numeric:tabular-nums;color:var(--ink)}
+.count.pulse{animation:pulse .3s ease}@keyframes pulse{50%{transform:scale(1.04);color:var(--rose-d)}}
+.label{letter-spacing:.2em;text-transform:uppercase;font-size:.78rem;color:var(--mute);margin:0}
+.target{margin:0;color:var(--sage);min-height:1.4em}
+.cam{position:relative;width:min(46vw,10rem);aspect-ratio:4/3;border-radius:1rem;overflow:hidden;border:2px solid var(--blush);box-shadow:0 0 0 4px var(--pearl)}
+.cam video{width:100%;height:100%;object-fit:cover;transform:scaleX(-1)}
+.dot{position:absolute;top:.4rem;right:.4rem;width:.55rem;height:.55rem;border-radius:50%;background:var(--rose)}
+progress{width:min(70%,14rem);accent-color:var(--gold)}
+.status{color:var(--mute);margin:0;min-height:1.6em}
+.diya{font-size:2rem;margin:0}
+.hi-lead,.hi{font-family:var(--dev);margin:0}.hi-lead{color:var(--rose-d);font-weight:500}.hi{line-height:1.9;font-size:1.1rem}
+.hi.close{margin-top:1rem;font-size:1.25rem;color:var(--ink)}
+#petals{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+#petals i{position:absolute;top:-8vh;left:var(--x);width:var(--s);height:calc(var(--s)*1.3);background:linear-gradient(135deg,#F6C9D4,var(--rose));border-radius:150% 0 150% 0;opacity:var(--o);animation:fall var(--d) linear var(--dl) infinite}
+@keyframes fall{to{transform:translate3d(var(--sw),112vh,0) rotate(540deg)}}
+@media(prefers-reduced-motion:reduce){#petals{display:none}.screen,.count.pulse{animation:none}*{transition:none!important}}
